@@ -5,9 +5,7 @@ Users can select projects, choose a payment method (card, PayPal, Stripe), and d
 
 ## 🚀 Features
 
-[x] Donation listing with donation amounts
-- Add to cart system for multiple donations
-- Secure payment gateway integration
+- [x] Secure payment gateway integration
 - Admin panel to manage projects and donors
 - Responsive design for all devices
 
