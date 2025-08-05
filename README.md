@@ -4,8 +4,8 @@ A complete online donation platform for mosques, churches, and charitable organi
 Users can select projects, choose a payment method (card, PayPal, Stripe), and donate easily.
 
 ## 🚀 Features
-
-- [x] Secure payment gateway integration
+- [x] Home page donation options with amount selection (completed). 
+- Secure payment gateway integration
 - Admin panel to manage projects and donors
 - Responsive design for all devices
 
