@@ -12,10 +12,10 @@ export const router = createBrowserRouter(
       children: [
         { index: true, element: <Home /> },
         {
-          path: '/donation-types',
+          path: 'donation-types',
           element: <DonationTypes />,
         },
-        { path: '/custom-donation', element: <CustomDonation /> },
+        { path: 'custom-donation', element: <CustomDonation /> },
       ],
     },
   ],
