@@ -4,7 +4,8 @@ A complete online donation platform for mosques, churches, and charitable organi
 Users can select projects, choose a payment method (card, PayPal, Stripe), and donate easily.
 
 ## 🚀 Features
-- [x] Home page donation options with amount selection (completed). 
+
+- [x] Home page donation options with amount selection (completed).
 - Secure payment gateway integration
 - Admin panel to manage projects and donors
 - Responsive design for all devices
@@ -12,6 +13,6 @@ Users can select projects, choose a payment method (card, PayPal, Stripe), and d
 ## 🛠️ Tech Stack
 
 - Frontend: React.js / Bootstrap / jQuery
-- Backend: PHP (CodeIgniter or Laravel)
+- Backend: Node.js
 - Database: MySQL
 - Payment: Stripe / PayPal
