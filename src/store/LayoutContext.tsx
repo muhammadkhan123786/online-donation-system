@@ -7,6 +7,8 @@ type contextType = {
   updateStep: (step: number) => void;
   updateHeader: (headerModal: HomeModel) => void;
   updateFooter: (message: string) => void;
+  donationAmount: string;
+  addDonation: (amount: string) => void;
 };
 
 export const LayoutContext = createContext<contextType>({
@@ -16,4 +18,6 @@ export const LayoutContext = createContext<contextType>({
   updateFooter: () => {},
   step: 1,
   updateStep: () => {},
+  donationAmount: '',
+  addDonation: () => {},
 });

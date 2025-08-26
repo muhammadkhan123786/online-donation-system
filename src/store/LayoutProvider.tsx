@@ -8,7 +8,11 @@ const LayoutProvider: React.FC<{ children: React.ReactNode }> = ({
   const [headerModel, setHeaderModel] = useState<HomeModel>(homeModel);
   const [footerMessage, setFooterMessage] = useState<string>('');
   const [step, setStep] = useState<number>(1);
+  const [amount, setAmount] = useState<string>('');
 
+  const addDonation = (amount: string) => {
+    setAmount(amount);
+  };
   const updateHeaderModal = useCallback((headerModal: HomeModel) => {
     setHeaderModel(headerModal);
   }, []);
@@ -28,6 +32,8 @@ const LayoutProvider: React.FC<{ children: React.ReactNode }> = ({
     updateFooter: updateFooterMessage,
     updateStep,
     step,
+    donationAmount: amount,
+    addDonation,
   };
 
   return (

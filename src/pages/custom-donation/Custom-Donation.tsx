@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import {
   usePageHeaderUpdate,
   useUpdateFooter,
   useUpdateStep,
 } from '../../store/CustomHooks';
+import { useLayoutContext } from '../../store/useLayoutContext';
+import { useNavigate } from 'react-router-dom';
 
 const CustomDonation: React.FC = () => {
   usePageHeaderUpdate(
@@ -12,6 +15,24 @@ const CustomDonation: React.FC = () => {
   );
   useUpdateFooter(``);
   useUpdateStep(4);
+  const navigate = useNavigate();
+  const { addDonation } = useLayoutContext();
+  const [amount, setAmount] = useState<string>('');
+  const digitClickHandler = (digit: string) => {
+    setAmount((pre) => pre + digit);
+  };
+  const sliceString = () => {
+    setAmount(amount.slice(0, -1));
+  };
+
+  const submitHandler = () => {
+    if (amount === '') {
+      alert('Please Enter Donation.');
+      return;
+    }
+    addDonation(amount);
+    navigate('/donation-types');
+  };
   return (
     <>
       <div className="flex justify-center items-center">
@@ -22,29 +43,40 @@ const CustomDonation: React.FC = () => {
             readOnly
             className="w-full p-3 mb-4 text-right text-2xl border rounded bg-white"
             placeholder="£0"
+            value={amount}
           />
 
           {/* Numeric keypad */}
           <div className="grid grid-cols-3 gap-3 mb-4">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, '.', 0].map((num) => (
               <button
+                onClick={() => digitClickHandler(num.toString())}
                 key={num}
                 className="bg-white border rounded py-3 text-xl hover:bg-blue-200"
               >
                 {num}
               </button>
             ))}
-            <button className="bg-yellow-200 border rounded py-3 text-xl hover:bg-yellow-300">
+            <button
+              onClick={sliceString}
+              className="bg-yellow-200 border rounded py-3 text-xl hover:bg-yellow-300"
+            >
               ⌫
             </button>
           </div>
 
           {/* Actions */}
           <div className="flex justify-between">
-            <button className="bg-gray-300 px-5 py-2 rounded hover:bg-gray-400">
+            <button
+              onClick={() => setAmount('')}
+              className="bg-gray-300 px-5 py-2 rounded hover:bg-gray-400"
+            >
               Clear
             </button>
-            <button className="bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700">
+            <button
+              onClick={submitHandler}
+              className="bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700"
+            >
               Confirm
             </button>
           </div>

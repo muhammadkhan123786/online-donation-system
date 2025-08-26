@@ -1,21 +1,18 @@
-import { useState } from 'react';
 import type { donationOption } from '../../models/Home-model/Home-model';
 import Button from '../../UI/Button';
 import { useNavigate } from 'react-router-dom';
-const buttonCss =
-  'md:block px-6 py-2.5 rounded-full hover:bg-blue-700 hover:text-white h-20 w-50 cursor-pointer font-bold text-3xl shadow-lg hover:shadow-blue-300';
+import { useLayoutContext } from '../../store/useLayoutContext';
 
 const DonationOptions: React.FC<{
   donations: donationOption[] | undefined;
 }> = ({ donations }) => {
-  const [selectedBtn, setSelectedBtn] = useState<number>(0);
+  const { addDonation } = useLayoutContext();
   const navigate = useNavigate();
   const handleButtonClick = (amount: number, id: number) => {
-    console.log(amount);
-    setSelectedBtn(id);
     if (id === -1) {
       navigate('/custom-donation');
     } else {
+      addDonation(amount.toString());
       navigate('/donation-types');
     }
   };
@@ -28,13 +25,7 @@ const DonationOptions: React.FC<{
             key={donation.id}
             onClick={() => handleButtonClick(donation.amount, donation.id)}
           >
-            <Button
-              cssClasses={`${buttonCss} ${
-                selectedBtn === donation.id
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-green-500 text-white'
-              }`}
-            >
+            <Button cssClasses="md:block bg-green-600 text-white px-6 py-2.5 rounded-full hover:bg-blue-700 hover:text-white h-20 w-50 cursor-pointer font-bold text-3xl shadow-lg hover:shadow-blue-300">
               £ {donation.amount}
             </Button>
           </div>

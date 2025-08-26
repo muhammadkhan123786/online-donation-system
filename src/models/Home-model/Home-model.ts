@@ -16,3 +16,12 @@ export class donationOption {
     this.amount = amount;
   }
 }
+
+export class donationType {
+  id: number;
+  donationType: string;
+  constructor(id: number, donationType: string) {
+    this.id = id;
+    this.donationType = donationType;
+  }
+}
