@@ -6,7 +6,7 @@ import {
   useUpdateFooter,
   useUpdateStep,
 } from '../../store/CustomHooks';
-import { fetchDonations } from '../../apis/API';
+import { fetchRecords } from '../../apis/API';
 import { donationOption } from '../../models/Home-model/Home-model';
 import LoadingSpinner from '../../UI/LoadingSpinner';
 
@@ -17,7 +17,9 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchDonation = async () => {
       try {
-        const apiDonations = await fetchDonations();
+        const apiDonations = await fetchRecords<donationOption[]>(
+          'https://hfdonor.helpfoundation.org.uk/ods/getdonationsamount'
+        );
         if (apiDonations === undefined) {
           setError(true);
           return;

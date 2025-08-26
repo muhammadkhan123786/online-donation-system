@@ -7,7 +7,7 @@ import {
 import { donationType } from '../../models/Home-model/Home-model';
 import LoadingSpinner from '../../UI/LoadingSpinner';
 import Button from '../../UI/Button';
-import { fetchDonationTypes } from '../../apis/API';
+import { fetchRecords } from '../../apis/API';
 
 const DonationTypes: React.FC = () => {
   usePageHeaderUpdate(1, 'Donation Type', `Select type of donation.`);
@@ -21,7 +21,9 @@ const DonationTypes: React.FC = () => {
   useEffect(() => {
     const fetchDonationsType = async () => {
       try {
-        const donationTypes = await fetchDonationTypes();
+        const donationTypes = await fetchRecords<donationType[]>(
+          'https://hfdonor.helpfoundation.org.uk/ods/getDonationsTypes'
+        );
         if (donationTypes === undefined) {
           setError(true);
           return;
