@@ -1,29 +1,11 @@
 import { useEffect } from 'react';
-import { HomeModel } from '../models/Home-model/Home-model';
+
 import { useLayoutContext } from './useLayoutContext';
+import type { pageContent } from '../models/TypeScript/Types';
 
-export const usePageHeaderUpdate = (
-  id: number,
-  heading: string,
-  message: string
-) => {
-  const { updateHeader } = useLayoutContext();
+export const useUpdatePageContent = (content: pageContent) => {
+  const { updatePageContent } = useLayoutContext();
   useEffect(() => {
-    const headerModel = new HomeModel(id, heading, message);
-    updateHeader(headerModel);
-  }, [id, heading, message, updateHeader]);
-};
-
-export const useUpdateFooter = (message: string) => {
-  const { updateFooter } = useLayoutContext();
-  useEffect(() => {
-    updateFooter(message);
-  }, [updateFooter, message]);
-};
-
-export const useUpdateStep = (step: number) => {
-  const { updateStep } = useLayoutContext();
-  useEffect(() => {
-    updateStep(step);
-  }, [updateStep, step]);
+    updatePageContent(content);
+  }, [updatePageContent, content]);
 };

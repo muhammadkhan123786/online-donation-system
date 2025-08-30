@@ -3,6 +3,7 @@ import Home from '../pages/Home/Home';
 import DonationTypes from '../pages/Donation-Types/DonationTypes';
 import RootLayout from '../components/Layouts/RootLayout';
 import CustomDonation from '../pages/custom-donation/Custom-Donation';
+import GiftAidDeclaration from '../pages/Gift-Aid/GiftAidDeclaration';
 
 export const router = createBrowserRouter(
   [
@@ -16,6 +17,7 @@ export const router = createBrowserRouter(
           element: <DonationTypes />,
         },
         { path: 'custom-donation', element: <CustomDonation /> },
+        { path: 'gift-aid-declaration', element: <GiftAidDeclaration /> },
       ],
     },
   ],

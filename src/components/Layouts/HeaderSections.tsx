@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
 import { useLayoutContext } from '../../store/useLayoutContext';
 const HeaderSection: React.FC = () => {
-  const { headerModel, step } = useLayoutContext();
+  const { pageContent } = useLayoutContext();
   const navigate = useNavigate();
 
   const onClickBackHandler = () => {
@@ -12,7 +12,7 @@ const HeaderSection: React.FC = () => {
   return (
     <header>
       <div className="flex justify-between py-4 px-4">
-        {step > 1 && (
+        {pageContent.backButton && (
           <div>
             <button
               onClick={onClickBackHandler}
@@ -29,9 +29,9 @@ const HeaderSection: React.FC = () => {
       </div>
       <div className="w-full justify-center items-center px-4 py-4">
         <h1 className="text-4xl font-bold text-center py-8">
-          {headerModel.heading}
+          {pageContent.heading}
         </h1>
-        <p className="text-center">{headerModel.message}</p>
+        <p className="text-center">{pageContent.message}</p>
       </div>
     </header>
   );

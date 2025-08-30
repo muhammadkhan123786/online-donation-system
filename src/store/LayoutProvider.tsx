@@ -1,39 +1,48 @@
 import { useCallback, useState } from 'react';
-import { HomeModel } from '../models/Home-model/Home-model';
+import type {
+  donationOption,
+  donationType,
+  pageContent,
+} from '../models/TypeScript/Types';
+
 import { LayoutContext } from './LayoutContext';
-const homeModel = new HomeModel(1, '', '');
+
 const LayoutProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [headerModel, setHeaderModel] = useState<HomeModel>(homeModel);
-  const [footerMessage, setFooterMessage] = useState<string>('');
-  const [step, setStep] = useState<number>(1);
-  const [amount, setAmount] = useState<string>('');
+  const [pageContent, setPageContent] = useState<pageContent>({
+    heading: '',
+    message: '',
+    footer: '',
+    backButton: false,
+  });
+  const [donation, setDonation] = useState<donationOption>({
+    id: 0,
+    amount: 0,
+  });
+  const [donationType, setDonationType] = useState<donationType>({
+    id: 0,
+    donationType: '',
+  });
 
-  const addDonation = (amount: string) => {
-    setAmount(amount);
+  const addDonationType = (donationType: donationType) => {
+    setDonationType(donationType);
   };
-  const updateHeaderModal = useCallback((headerModal: HomeModel) => {
-    setHeaderModel(headerModal);
-  }, []);
 
-  const updateFooterMessage = useCallback((message: string) => {
-    setFooterMessage(message);
-  }, []);
-
-  const updateStep = useCallback((step: number) => {
-    setStep(step);
+  const addDonation = (donation: donationOption) => {
+    setDonation(donation);
+  };
+  const updatePageContent = useCallback((pageContent: pageContent) => {
+    setPageContent(pageContent);
   }, []);
 
   const cxtValue = {
-    headerModel,
-    footerModel: footerMessage,
-    updateHeader: updateHeaderModal,
-    updateFooter: updateFooterMessage,
-    updateStep,
-    step,
-    donationAmount: amount,
+    updatePageContent,
+    pageContent,
+    donationAmount: donation,
     addDonation,
+    addDonationType,
+    donationType,
   };
 
   return (

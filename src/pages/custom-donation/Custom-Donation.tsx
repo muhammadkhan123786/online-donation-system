@@ -1,20 +1,9 @@
 import { useState } from 'react';
-import {
-  usePageHeaderUpdate,
-  useUpdateFooter,
-  useUpdateStep,
-} from '../../store/CustomHooks';
+
 import { useLayoutContext } from '../../store/useLayoutContext';
 import { useNavigate } from 'react-router-dom';
 
 const CustomDonation: React.FC = () => {
-  usePageHeaderUpdate(
-    1,
-    'Custom Donation',
-    `Please enter your desired donation`
-  );
-  useUpdateFooter(``);
-  useUpdateStep(4);
   const navigate = useNavigate();
   const { addDonation } = useLayoutContext();
   const [amount, setAmount] = useState<string>('');
@@ -30,7 +19,8 @@ const CustomDonation: React.FC = () => {
       alert('Please Enter Donation.');
       return;
     }
-    addDonation(amount);
+
+    addDonation({ id: -1, amount: +amount });
     navigate('/donation-types');
   };
   return (

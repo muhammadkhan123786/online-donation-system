@@ -1,4 +1,4 @@
-import { donationOption } from '../models/Home-model/Home-model';
+import { donationOption } from '../models/TypeScript/Types';
 
 export const donations = [
   new donationOption(1, 10),

@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import DonationOptions from '../../components/Home-Components/DonationOptions';
 
-import {
-  usePageHeaderUpdate,
-  useUpdateFooter,
-  useUpdateStep,
-} from '../../store/CustomHooks';
+import { useUpdatePageContent } from '../../store/CustomHooks';
 import { fetchRecords } from '../../apis/API';
-import { donationOption } from '../../models/Home-model/Home-model';
+import type {
+  donationOption,
+  pageContent,
+} from '../../models/TypeScript/Types';
 import LoadingSpinner from '../../UI/LoadingSpinner';
 
 const Home: React.FC = () => {
@@ -34,18 +33,19 @@ const Home: React.FC = () => {
     };
     fetchDonation();
   }, []);
-  usePageHeaderUpdate(
-    1,
-    'PLEASE DONATE GENEROUSLY',
-    `Your contributions are the heartbeat of Masjid Yusuf's progress. With a
-          £472k debt and upcoming projects including a £30k main Hall carpet
-          refresh post-Ramadan, your support ensures our community's growth and
-          vitality. Thank you for your generosity and commitment.`
+  const pageContent: pageContent = useMemo(
+    () => ({
+      heading: 'Please donate generously'.toLocaleUpperCase(),
+      message:
+        'Please donate generously to support our cause and help bring hope to those in need. Your kindness can make a real difference.',
+      footer:
+        'Every contribution, big or small, helps us continue our mission of serving humanity. Thank you for your generosity.',
+      backButton: false,
+    }),
+    []
   );
-  useUpdateFooter(`There is a 1.69% transaction charge for
-        all payments made. As a registered charity, we are able to claim
-        25% Gift Aid on all eligible donations which will cover the charges.`);
-  useUpdateStep(1);
+
+  useUpdatePageContent(pageContent);
   if (error)
     return (
       <p className="text-red-500 text-2xl text-center font-bold">

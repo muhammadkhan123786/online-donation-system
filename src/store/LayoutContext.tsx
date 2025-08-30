@@ -1,23 +1,23 @@
-import { HomeModel } from '../models/Home-model/Home-model';
+import type {
+  donationOption,
+  donationType,
+  pageContent,
+} from '../models/TypeScript/Types';
 import { createContext } from 'react';
 type contextType = {
-  headerModel: HomeModel;
-  footerModel: string;
-  step: number;
-  updateStep: (step: number) => void;
-  updateHeader: (headerModal: HomeModel) => void;
-  updateFooter: (message: string) => void;
-  donationAmount: string;
-  addDonation: (amount: string) => void;
+  pageContent: pageContent;
+  updatePageContent: (pageContent: pageContent) => void;
+  donationAmount: donationOption;
+  addDonation: (donation: donationOption) => void;
+  donationType: donationType;
+  addDonationType: (dt: donationType) => void;
 };
 
 export const LayoutContext = createContext<contextType>({
-  headerModel: new HomeModel(0, '', ''),
-  footerModel: '',
-  updateHeader: () => {},
-  updateFooter: () => {},
-  step: 1,
-  updateStep: () => {},
-  donationAmount: '',
+  updatePageContent: () => {},
+  pageContent: { heading: '', message: '', footer: '', backButton: false },
+  donationAmount: { id: 0, amount: 0 },
   addDonation: () => {},
+  donationType: { id: 0, donationType: '' },
+  addDonationType: () => {},
 });

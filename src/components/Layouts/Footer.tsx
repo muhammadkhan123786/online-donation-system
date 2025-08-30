@@ -1,14 +1,14 @@
 import { IoSettings } from 'react-icons/io5';
 import { useLayoutContext } from '../../store/useLayoutContext';
 const Footer: React.FC = () => {
-  const { footerModel } = useLayoutContext();
+  const { pageContent } = useLayoutContext();
   return (
     <footer className="bg-gray-800 text-white">
       <hr className="p-4 bg-amber-50" />
       <div className="p-4 text-center">
-        {footerModel && (
+        {pageContent.footer && (
           <>
-            <strong>Please note:</strong> {footerModel}
+            <strong>Please note:</strong> {pageContent.footer}
           </>
         )}
       </div>

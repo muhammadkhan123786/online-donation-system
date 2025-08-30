@@ -20,3 +20,4 @@ export const fetchRecords = async <T>(url: string): Promise<T | undefined> => {
     console.log(error);
   }
 };
+
