@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useLayoutContext } from '../../store/useLayoutContext';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +7,14 @@ const CustomDonation: React.FC = () => {
   const navigate = useNavigate();
   const { addDonation } = useLayoutContext();
   const [amount, setAmount] = useState<string>('');
+  const { pageContent, updatePageContent } = useLayoutContext();
+
+  useEffect(() => {
+    if (!pageContent.backButton) {
+      updatePageContent({ ...pageContent, backButton: true });
+    }
+  }, [pageContent, updatePageContent]);
+
   const digitClickHandler = (digit: string) => {
     setAmount((pre) => pre + digit);
   };

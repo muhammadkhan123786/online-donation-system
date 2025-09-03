@@ -13,3 +13,5 @@ export type donationType = {
   id: number;
   donationType: string;
 };
+
+export type APIMETHOD = 'POST' | 'GET';

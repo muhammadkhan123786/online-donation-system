@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import DonationOptions from '../../components/Home-Components/DonationOptions';
 
 import { useUpdatePageContent } from '../../store/CustomHooks';
-import { fetchRecords } from '../../apis/API';
+import { API_CALL } from '../../apis/API';
 import type {
   donationOption,
   pageContent,
@@ -16,7 +16,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchDonation = async () => {
       try {
-        const apiDonations = await fetchRecords<donationOption[]>(
+        const apiDonations = await API_CALL<donationOption[]>(
           'https://hfdonor.helpfoundation.org.uk/ods/getdonationsamount'
         );
         if (apiDonations === undefined) {
