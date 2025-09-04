@@ -1,4 +1,5 @@
 import type { APIMETHOD } from '../models/TypeScript/Types';
+import { Server_API } from './config';
 
 export const API_CALL = async <T, U extends object | undefined = undefined>(
   url: string,
@@ -6,13 +7,12 @@ export const API_CALL = async <T, U extends object | undefined = undefined>(
   method: APIMETHOD = 'GET'
 ): Promise<T | undefined> => {
   if (!url) return undefined;
-
   try {
     const response = await fetch(url, {
       method: method,
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': 'j23n98fn2938fn2-2309fn2-fnsd2390',
+        'x-api-key': Server_API,
       },
       body: body && method === 'POST' ? JSON.stringify(body) : undefined,
     });
